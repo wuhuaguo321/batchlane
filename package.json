@@ -1,0 +1,36 @@
+{
+  "name": "batchlane",
+  "version": "0.1.0",
+  "description": "Small, dependency-free TypeScript helpers for bounded concurrency, retries and cancellation.",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "import": { "types": "./dist/esm/index.d.ts", "default": "./dist/esm/index.js" },
+      "require": { "types": "./dist/cjs/index.d.ts", "default": "./dist/cjs/index.js" }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["dist", "README.md", "README.en.md", "LICENSE", "CHANGELOG.md"],
+  "sideEffects": false,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:types": "tsc -p test/types/tsconfig.json",
+    "test:package": "node scripts/test-package.mjs",
+    "test:coverage": "node --experimental-test-coverage --test-coverage-include=dist/esm/**/*.js --test test/*.test.mjs",
+    "check": "npm run build && npm run test:types && npm test && npm run test:package",
+    "demo": "npm run build && node examples/demo.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": { "typescript": "5.9.3" },
+  "license": "MIT",
+  "author": "wuhuaguo321",
+  "repository": { "type": "git", "url": "git+https://github.com/wuhuaguo321/batchlane.git" },
+  "homepage": "https://github.com/wuhuaguo321/batchlane#readme",
+  "bugs": { "url": "https://github.com/wuhuaguo321/batchlane/issues" },
+  "keywords": ["async", "concurrency", "retry", "timeout", "abortsignal", "typescript", "batch"]
+}
